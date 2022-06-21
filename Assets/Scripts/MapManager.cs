@@ -9,12 +9,15 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private Tilemap map;
 
+    [SerializeField]
+    private TileBase tile;
 
     [SerializeField]
     private List<TileData> tileDatas;
 
     private Dictionary<TileBase, TileData> dataFromTiles;
 
+    
 
     private void Awake()
     {
@@ -43,9 +46,7 @@ public class MapManager : MonoBehaviour
 
             TileBase clickedTile = map.GetTile(gridPosition);
 
-            float walkingSpeed = dataFromTiles[clickedTile].walkingSpeed;
-
-            print("Walking speed on tile type " + clickedTile + " is " + walkingSpeed);
+            map.SetTile(gridPosition, tile);
         }
 
     }
