@@ -8,7 +8,7 @@ public class RoomTrasition : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Transition"))
         {
             virtualCam.SetActive(true);
         }
@@ -16,7 +16,7 @@ public class RoomTrasition : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Transition"))
         {
             virtualCam.SetActive(false);
         }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-
     public float speed;
     public Animator animator;
     // Update is called once per frame
