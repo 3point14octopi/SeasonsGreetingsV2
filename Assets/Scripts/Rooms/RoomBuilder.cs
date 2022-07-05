@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RoomBuilder : MonoBehaviour
 {
 
 
-    public PolygonCollider2D poly;
+    private PolygonCollider2D poly;
 
-    private int basicLength = 17;
     private int basicHeight = 9;
     private int tileDim = 2;
     
@@ -18,8 +18,29 @@ public class RoomBuilder : MonoBehaviour
     public Vector2 origin;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        poly = gameObject.GetComponent<PolygonCollider2D>();
+       //this will exist later
+        /*
+        middle man script will hold the data for one room at a time and will update as rooms are created, 
+            be sure to update prefab with an existing reference to the middle man so it can easily grab from it.
+
+         roomlength = middleMan.getLength();
+         roomHeight = middleMan.getHeight();
+         origin = middleMan.GetOrigin();
+
+        */
+
+        //perform the rest of the room creation peice by peice
+        BuildCamCollision();  
+
+
+    }
+
+    public void BuildCamCollision()
+    {
+        //rework to only unse the nessisary 4 coners instead of all the extra stuff :D
 
         int roomScale = roomHeight/basicHeight; 
         int totalPoints = (roomScale * 10) + 2;
@@ -75,3 +96,6 @@ public class RoomBuilder : MonoBehaviour
         poly.points = myPoints;
     }
 }
+
+
+
