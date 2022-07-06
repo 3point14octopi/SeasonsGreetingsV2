@@ -5,12 +5,14 @@ using UnityEngine;
 public class RoomTrasition : MonoBehaviour
 {
     public GameObject virtualCam;
+    private bool isActiveRoom;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Transition"))
         {
             virtualCam.SetActive(true);
+            isActiveRoom = true;
         }
     }
 
@@ -19,6 +21,12 @@ public class RoomTrasition : MonoBehaviour
         if (other.CompareTag("Transition"))
         {
             virtualCam.SetActive(false);
+            isActiveRoom = false;
         }
+    }
+
+    public bool GetActiveState()
+    {
+        return isActiveRoom;
     }
 }
