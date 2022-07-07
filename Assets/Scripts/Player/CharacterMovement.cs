@@ -17,4 +17,9 @@ public class CharacterMovement : MonoBehaviour
 
         transform.position = transform.position + speed * movement * Time.deltaTime;
     }
+
+    private void FixedUpdate() 
+    {
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3 (0,0,0);
+    }
 }
