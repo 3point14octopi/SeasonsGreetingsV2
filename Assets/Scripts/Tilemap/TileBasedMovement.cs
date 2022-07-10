@@ -30,9 +30,5 @@ public class TileBasedMovement : MonoBehaviour
 
         }
 
-        float adjustedSpeed = mapManager.GetTileWalkingSpeed(transform.position);
-
-        transform.position += transform.up * Time.deltaTime * adjustedSpeed;
-
     }
 }

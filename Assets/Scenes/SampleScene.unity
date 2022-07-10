@@ -6953,12 +6953,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658ce1c5a676c1d4f9f1fa345ac722ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 678850351}
-  tile: {fileID: 11400000, guid: 43134a4d37a7c1842a0a348ed2003ff1, type: 2}
-  tileDatas:
-  - {fileID: 11400000, guid: 37fca0a8c1b2a234183b88215fd12599, type: 2}
-  - {fileID: 11400000, guid: 6ad5084b4677ad94abed37086246e1eb, type: 2}
-  - {fileID: 11400000, guid: b713309f461898d45ad4ff09e63e2005, type: 2}
+  bgmap: {fileID: 678850351}
+  wallmap: {fileID: 1815243874}
+  bgtile: {fileID: 11400000, guid: 7a4e6ceb371ccbe449f966c8eee4a803, type: 2}
+  walltile: {fileID: 11400000, guid: 43134a4d37a7c1842a0a348ed2003ff1, type: 2}
+  roomDatas: []
+  grid: {fileID: 321022768}
+  roomPrefab: {fileID: 6017374570276864832, guid: 893cc78f200f93a46a87d4fcbb1a88a8, type: 3}
 --- !u!4 &1849830587
 Transform:
   m_ObjectHideFlags: 0
@@ -7315,7 +7316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079707197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8878224, y: 26.242422, z: -10}
+  m_LocalPosition: {x: 0.91, y: -1.87, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

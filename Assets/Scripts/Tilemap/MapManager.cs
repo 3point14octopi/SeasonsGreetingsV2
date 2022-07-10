@@ -1,37 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
 
     [SerializeField]
-    private Tilemap map;
+    private Tilemap bgmap;
 
     [SerializeField]
-    private TileBase tile;
+    private Tilemap wallmap;
 
     [SerializeField]
-    private List<TileData> tileDatas;
+    private TileBase bgtile;
+
+    [SerializeField]
+    private TileBase walltile;
+
+    [SerializeField]
+    private List<RoomData> roomDatas;
+
+    [SerializeField]
+    private Grid grid;
+
+    public GameObject roomPrefab;
 
     private Dictionary<TileBase, TileData> dataFromTiles;
 
-    
+    private int tileToPlace;
 
     private void Awake()
     {
 
 
-        dataFromTiles = new Dictionary<TileBase, TileData>();
-        foreach (var tileData in tileDatas)
-        {
-            foreach (var tile in tileData.tiles)
-            {
-                dataFromTiles.Add(tile, tileData);
-            }
-        }
+        int  [,] sampleRoom = new int [9,17] {
+                            {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0} , 
+                            {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0} ,
+                            {0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0} ,
+                            {0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0} ,
+                            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0} ,
+                            {0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0} ,
+                            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0} ,
+                            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0} ,
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+                            };
 
+        RoomData room = ScriptableObject.CreateInstance<RoomData>();
+        room.tileType = sampleRoom;
+        room.roomHeight = 9;
+        room.roomLength = 17;
+        room.origin = new Vector2Int(-9,5);
+        roomDatas.Add(room);
+
+
+        AssetDatabase.CreateAsset(room, "Assets/Scriptable Objects/RoomData/TestRoom.asset"); 
     }
 
 
@@ -41,32 +65,51 @@ public class MapManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = map.WorldToCell(mousePosition);
-
-            TileBase clickedTile = map.GetTile(gridPosition);
-
-            map.SetTile(gridPosition, tile);
+            BuildRooms();
         }
 
     }
 
-
-    public float GetTileWalkingSpeed(Vector2 worldPosition)
+    public void BuildRooms()
     {
-        Vector3Int gridPosition = map.WorldToCell(worldPosition);
 
-        TileBase tile = map.GetTile(gridPosition);
+        foreach(var RoomData in roomDatas)
+        {
 
-        if (tile == null)
-            return 1f;
 
-        float walkingSpeed = dataFromTiles[tile].walkingSpeed;
+            //lay tiles
+            for(int count = 0; count < RoomData.roomHeight; count++)
+            {
+                for(int quickCount = RoomData.roomLength -1; quickCount >= 0; quickCount --)
+                {
 
-        return walkingSpeed;
-    
+                    Debug.Log(RoomData.roomLength);
+                    tileToPlace = RoomData.tileType[count,quickCount];
+
+                    switch(tileToPlace)
+                    {
+                        case 0:
+
+                                wallmap.SetTile(new Vector3Int(RoomData.origin.x + quickCount, RoomData.origin.y + count,0), walltile);
+                                break;
+
+                        case 1:
+
+                                bgmap.SetTile(new Vector3Int(RoomData.origin.x + quickCount, RoomData.origin.y + count,0), bgtile);
+                                break;
+
+
+                        default:
+
+                        break;
+                    }
+
+                    
+
+                }
+            }
+
+        }
     }
-
-
 }
 
