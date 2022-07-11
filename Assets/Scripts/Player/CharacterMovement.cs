@@ -7,9 +7,11 @@ public class CharacterMovement : MonoBehaviour
     public float speed;
     public Animator animator;
     // Update is called once per frame
+    public Vector3 movement;
+
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+        movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
@@ -21,5 +23,10 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate() 
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3 (0,0,0);
+    }
+
+    public Vector3 GetMoveDirection()
+    {
+        return movement;
     }
 }

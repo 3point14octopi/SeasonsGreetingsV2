@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 64406804715196947}
   - component: {fileID: 64406804715196944}
   - component: {fileID: 64406804715196940}
+  - component: {fileID: 5571816730148358715}
   m_Layer: 9
   m_Name: Bouncer
   m_TagString: Untagged
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.3
+--- !u!114 &5571816730148358715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64406804715196945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c21ec0b8ee573946be3b95f13016a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 4

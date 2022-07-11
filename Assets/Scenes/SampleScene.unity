@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321022766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalPosition: {x: 1, y: -1, z: 1}
   m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7078,6 +7078,7 @@ GameObject:
   - component: {fileID: 1908916042}
   - component: {fileID: 1908916047}
   - component: {fileID: 1908916046}
+  - component: {fileID: 1908916048}
   m_Layer: 6
   m_Name: Frostbite
   m_TagString: Player
@@ -7233,6 +7234,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   animator: {fileID: 1908916046}
+  movement: {x: 0, y: 0, z: 0}
+--- !u!114 &1908916048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908916040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34715c2731f015d4e846c23c9889d8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 11
+  playerBullet: {fileID: 7444889122869908504, guid: e01fc172388c05c4c97067b510ce235c, type: 3}
 --- !u!4 &2038270315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4046199373406968692, guid: f9704889ac175074f975b4197898df0a, type: 3}
